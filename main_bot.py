@@ -4,26 +4,27 @@ Created on Sun Aug 19 17:46:32 2018
 
 @author: jackson
 """
-import kunci
+import key
 import datetime
 from time import sleep
 from binance.client import Client
-client = Client(kunci.api_key, kunci.api_secret)
+client = Client(key.api_key, key.api_secret)
 
-symbol= 'BTCUSDT'
-quantity= '0.05'
+symbol = 'BTCUSDT'
+quantity = '0.05'
 
-order= False
-while order==False:
-    BTC= client.get_historical_klines(symbol=symbol, interval='30m', start_str="1 hour ago UTC")
-    if (float(BTC[-1][4])-float(BTC[-2][4]))>5:
-        print ('Buyyy')
+order = False
+while order == False:
+    BTC = client.get_historical_klines(
+        symbol=symbol, interval='30m', start_str="1 hour ago UTC")
+    if (float(BTC[-1][4])-float(BTC[-2][4])) > 5:
+        print('Buyyy')
         #client.order_market_buy(symbol= symbol, quantity= quantity)
-        order= True
-    elif (float(BTC[-1][4])-float(BTC[-2][4]))<-5:
-        print ('Sellll')
+        order = True
+    elif (float(BTC[-1][4])-float(BTC[-2][4])) < -5:
+        print('Sellll')
         #client.order_market_buy(symbol= symbol , quantity= quantity)
-        order= True
+        order = True
     else:
-        print ('Do nothing')
+        print('Do nothing')
     sleep(5)
